@@ -6,3 +6,11 @@ from .models import Project, Task
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ['id', 'title']
     list_per_page = 10
+
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title']
+    list_filter = ['project', 'completed']
+    list_per_page = 10
+    search_fields = ['title__startswith']
