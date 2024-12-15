@@ -1,8 +1,10 @@
+import NavBar from "./components/NavBar";
+
 function App() {
   return (
     <>
-      <header>
-        <h1>Hello, World!</h1>
+      <header className="px-6 py-8 bg-gray-50">
+        <NavBar />
       </header>
       <main></main>
     </>
