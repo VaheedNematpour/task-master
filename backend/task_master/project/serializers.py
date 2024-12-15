@@ -7,3 +7,10 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = ['id', 'title']
 
+
+class TaskSerializer(serializers.ModelSerializer):
+    project = ProjectSerializer()
+
+    class Meta:
+        model = Task
+        fields = ['id', 'title', 'completed', 'project']
