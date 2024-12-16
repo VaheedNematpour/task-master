@@ -57,7 +57,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny']
 }
 
-CORS_ORIGIN_ALLOW_ANY = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'task_master.urls'
 
