@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -17,6 +18,16 @@ def project_list(request):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['GET', 'DELETE'])
+def project_detail(request, id):
+    project = get_object_or_404(Project, pk=id)
+    if request.method == 'GET':
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        project.delete()
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view()
