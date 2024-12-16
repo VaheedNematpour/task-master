@@ -30,7 +30,7 @@ function ProjectList({ projects, isDark }: Props) {
           } xl:text-lg`}
           onClick={() => setExtended(!extended)}
         >
-          Show All
+          {extended ? "Show Less" : "Show More"}
         </button>
       </div>
 
