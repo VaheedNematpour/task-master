@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Project, Task
-from .serializers import ProjectSerializer, TaskSerializer
+from .serializers import ProjectSerializer, CreateTaskSerializer, TaskSerializer
 
 
 @api_view(['GET', 'POST'])
@@ -30,9 +30,16 @@ def project_detail(request, id):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-@api_view()
+@api_view(['GET', 'POST'])
 def task_list(request):
-    tasks = Task.objects.select_related('project').all()
-    serializer = TaskSerializer(tasks, many=True)
+    if request.method == 'GET':
+        tasks = Task.objects.select_related('project').all()
+        serializer = TaskSerializer(tasks, many=True)
 
-    return Response(serializer.data)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = CreateTaskSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
