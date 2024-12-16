@@ -39,7 +39,7 @@ function ProjectList({ projects, isDark }: Props) {
           {projects.map((project) => (
             <li key={project.id}>
               <article
-                className={`px-4 py-2 ${
+                className={`px-3 py-6 ${
                   isDark ? "bg-gray-700" : "bg-gray-400"
                 } mx-2 my-2 rounded`}
               >
@@ -59,7 +59,7 @@ function ProjectList({ projects, isDark }: Props) {
           {projects.slice(0, 3).map((project) => (
             <li key={project.id}>
               <article
-                className={`px-4 py-2 ${
+                className={`px-3 py-6 ${
                   isDark ? "bg-gray-700" : "bg-gray-400"
                 } mx-2 my-2 rounded`}
               >
