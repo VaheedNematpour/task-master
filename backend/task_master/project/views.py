@@ -43,3 +43,14 @@ def task_list(request):
         serializer.save()
         
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'DELETE'])
+def task_detail(request, id):
+    task = get_object_or_404(Task, pk=id)
+    if request.method == 'GET':
+        serializer = TaskSerializer(task)
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        task.delete()
+        return Response(status=status.HTTP_404_NOT_FOUND)
