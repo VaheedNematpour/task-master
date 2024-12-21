@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NavBar from "./components/NavBar";
 import ProjectList from "./components/task_master/ProjectList";
+import ProjectForm from "./components/task_master/ProjectForm";
 
 function App() {
   const [dark, setDark] = useState(false);
@@ -12,6 +13,8 @@ function App() {
       </header>
       <main className={`px-6 py-8`}>
         <ProjectList isDark={dark} />
+
+        <ProjectForm isDark={dark} />
       </main>
     </div>
   );
